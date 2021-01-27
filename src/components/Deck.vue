@@ -6,12 +6,12 @@
 
 <script>
 import Card from '@/components/Card'
+
 export default {
     components: {Card},
   props: {
     cards: Array
   }
-
 }
 </script>
 
@@ -20,6 +20,8 @@ export default {
 .deck{
   display: grid;
   grid-auto-rows: 10px;
+  margin-bottom: 370px;
+  margin-left: 10px;
 }
 
 </style>

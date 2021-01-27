@@ -2,14 +2,14 @@
   <article >
     <div v-if="!faceDown" class="card">
       <span class="top">
-        <img :src="icon" class="icon" alt="">
+        <img :src="icon" class="icon">
         <p>{{displayValue}}</p>
       </span>
 
-      <img :src="icon" class="icon large" alt="">
+      <img :src="icon" class="icon large">
       
       <span class="bottom">
-        <img :src="icon" class="icon"  alt="">
+        <img :src="icon" class="icon">
         <p>{{displayValue}}</p>
       </span>
 
@@ -23,7 +23,7 @@
 export default {
   props: {
     card: Object,
-    faceDown: Boolean
+    faceDown: Boolean,
   },
   computed: {
     icon(){
@@ -64,8 +64,17 @@ export default {
     font-size: 1.5rem;
   }
 
-  .top{ align-self: flex-start}
-  .bottom{ align-self: flex-end}
+  .top{ 
+    align-self: flex-start;
+    p {
+          font-size: 3rem;
+    }
+    }
+  .bottom{ 
+    align-self: flex-end;
+     p {
+          font-size: 3rem;
+    }}
   .bottom{
     transform: rotate(180deg)
   }
@@ -73,18 +82,17 @@ export default {
   &.face-down{
     background-color: hotpink;
     background-image: url('~@/assets/dots.svg');
+    margin-left: 1rem;
   }
 }
 
-
-
 .icon{
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 2rem;
+  height: 2rem;
 
   &.large{
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 6rem;
+    height: 6rem;
   }
 }
 </style>
