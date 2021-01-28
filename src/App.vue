@@ -47,19 +47,19 @@ export default {
   // },
   methods: {
     guessCardValue(guess) {
-      const next = this.deck[0]
+      const nextCard = this.deck[0]
       if (guess == 'lower') {
-        if(next.value < this.value){
+        if(nextCard.value < this.value){
         alert('Yes! Its lower');
       }else alert('Sorry! Wrong')
       }
       else if (guess == 'same') {
-        if (next.value == this.value) {
+        if (nextCard.value == this.value) {
         alert('Yes! Its equal');
       }else alert('Sorry! Wrong')
       }
       else if (guess == 'higher') {
-        if (next.value > this.value) {
+        if (nextCard.value > this.value) {
         alert('Yes! Its higher');
       }else alert('Sorry! Wrong')
       }
