@@ -1,8 +1,8 @@
 <template>
   <div id="buttons">
-    <button @click="turnCard">Lower</button>
-    <button @click="turnCard">Equal</button>
-    <button @click="turnCard">Higher</button>
+    <button @click="guessCard('lower')">Lower</button>
+    <button @click="guessCard('same')">Equal</button>
+    <button @click="guessCard('higher')">Higher</button>
   </div>
 </template>
 
@@ -10,10 +10,27 @@
 export default {
     name: 'ActionBar',
     methods: {
-      turnCard(){
-        this.$emit('turn')
-    }
-  }
+      guessCard(btn) {
+        if (btn == 'lower') {
+          this.$emit('guessCard', 'lower')
+        }else if (btn == 'same') {
+          this.$emit('guessCard', 'same')
+        } else {
+          this.$emit('guessCard', 'higher')
+        }
+      }
+    },
+  //   methods: {
+  //     guessLower(){
+  //       this.$emit('guessLower')
+  //   },
+  //   guessSame() {
+  //     this.$emit('guessSame')
+  //   },
+  //   guessHigher() {
+  //     this.$emit('guessHigher')
+  //   }
+  // }
 }
 </script>
 

@@ -6,7 +6,9 @@
       <Deck id="deck" :cards="topFive" faceDown/> 
     </div>
     <hr>
-    <ActionBar id="actionBar" @turn='guessLower'/>
+    <ActionBar id="actionBar" @guessCard='guessCardValue($event)' />
+    <!-- <ActionBar id="actionBar" v-else-if @guessSame='guessSame'/>
+    <ActionBar id="actionBar" v-else @guessLower='guessLower'/> -->
   </section>
 </template>
 
@@ -22,7 +24,7 @@ export default {
 
   data(){ return {
     deck: [],
-    value: 6,
+    value: 7,
     suite: 'Hearts',
   }},
   computed: {
@@ -44,16 +46,36 @@ export default {
   //   this.Game = new Game()
   // },
   methods: {
-    guessLower() {
-      let nextCard = this.deck[0].value
-      console.log('Check if facedown', Deck.faceDown)
-      if(this.value > nextCard.value){
-        console.log('Du gissade rätt!!!');
+    guessCardValue(guess) {
+      const next = this.deck[0]
+      if (guess == 'lower') {
+        if(next.value < this.value){
+        alert('Yes! Its lower');
+      }else alert('Sorry! Wrong')
+      }
+      else if (guess == 'same') {
+        if (next.value == this.value) {
+        alert('Yes! Its equal');
+      }else alert('Sorry! Wrong')
+      }
+      else if (guess == 'higher') {
+        if (next.value > this.value) {
+        alert('Yes! Its higher');
+      }else alert('Sorry! Wrong')
       }
     },
-    guessSame(){
-
-    }
+    // guessSame(){
+    //   let nextCard = this.deck[0]
+    //   if(nextCard.value == this.value){
+    //     alert('Du gissade rätt!!!');
+    //   }
+    // },
+    // guessHigher() {
+    //   let nextCard = this.deck[0]
+    //   if(nextCard.value > this.value){
+    //     alert('Du gissade rätt!!!');
+    //   }
+    // }
 }
 }
 </script>
