@@ -1,14 +1,19 @@
 <template>
   <div id="buttons">
-    <button>Lower</button>
-    <button>Equal</button>
-    <button>Higher</button>
+    <button @click="turnCard">Lower</button>
+    <button @click="turnCard">Equal</button>
+    <button @click="turnCard">Higher</button>
   </div>
 </template>
 
 <script>
 export default {
     name: 'ActionBar',
+    methods: {
+      turnCard(){
+        this.$emit('turn')
+    }
+  }
 }
 </script>
 

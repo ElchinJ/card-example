@@ -2,12 +2,11 @@
   <section> 
     <Score id="score"/>
     <div id="app">
-      <Card id="card" :card="{value: 7, suite: 'Clubs'}"/>
-      <!-- <Card :card="{value: 13, suite: 'Spades'}" faceDown/> -->
+      <Card id="card" :card="{value, suite}"/>
       <Deck id="deck" :cards="topFive" faceDown/> 
     </div>
     <hr>
-    <ActionBar id="actionBar"/>
+    <ActionBar id="actionBar" @turn='guessLower'/>
   </section>
 </template>
 
@@ -17,15 +16,14 @@ import Deck from '@/components/Deck'
 import Score from '@/components/Score'
 import ActionBar from '@/components/ActionBar'
 
-Array.prototype.shuffle = function(){
-  return this.sort(() => Math.random()-0.5 )
-}
-
 export default {
   name: 'App',
   components: {Card, Deck, Score, ActionBar},
+
   data(){ return {
-    deck: []
+    deck: [],
+    value: 6,
+    suite: 'Hearts',
   }},
   computed: {
     topFive(){
@@ -41,7 +39,22 @@ export default {
       }
     }
     this.deck = this.deck.shuffle()
-  }
+  },
+  // mounted() {
+  //   this.Game = new Game()
+  // },
+  methods: {
+    guessLower() {
+      let nextCard = this.deck[0].value
+      console.log('Check if facedown', Deck.faceDown)
+      if(this.value > nextCard.value){
+        console.log('Du gissade rätt!!!');
+      }
+    },
+    guessSame(){
+
+    }
+}
 }
 </script>
 
