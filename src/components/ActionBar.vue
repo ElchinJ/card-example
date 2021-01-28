@@ -24,4 +24,10 @@ button {
   width: 6rem;
   height: 2rem;
 }
+button:focus{
+    background:white;
+    color: black;
+    font-weight: bold;
+}
+
 </style>
