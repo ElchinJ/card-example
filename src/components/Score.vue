@@ -1,17 +1,23 @@
 <template>
     <div>
-        <label>Attempts left: </label>
-        <p>{{attempts}}</p>
-        <label>Points: </label>
-        <p>{{points}}</p>
-        <label>Cards left: </label>
-        <p>{{heap}}</p>
+        <span>
+            <label>Attempts left: </label>
+            <label>{{attempts}}</label>
+        </span>
+        <span>
+            <label>Points: </label>
+            <label>{{points}}</label>
+        </span>
+        <span>
+            <label>Cards left: </label>
+            <label>{{heap}}</label>
+        </span>
     </div>
 </template>
 
 <script>
     export default {
-        name: Score,
+        name: 'Score',
         data() {
             return {
                 attempts: 0,
@@ -23,5 +29,15 @@
 </script>
 
 <style lang="scss" scoped>
-
+hr {
+    visibility: hidden;
+}
+label {
+    color: white;
+    font-weight: bold;
+}
+div {
+    display: flex;
+    flex-direction: column;
+}
 </style>

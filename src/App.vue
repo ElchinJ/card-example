@@ -1,20 +1,21 @@
 <template>
   <section> 
+    <Score id="score"/>
     <div id="app">
-      <!-- <ActionBar/> -->
-      <Card :card="{value: 7, suite: 'Clubs'}"/>
+      <Card id="card" :card="{value: 7, suite: 'Clubs'}"/>
       <!-- <Card :card="{value: 13, suite: 'Spades'}" faceDown/> -->
-      <Deck :cards="topFive" faceDown/>
-      <!-- <Score/> -->
+      <Deck id="deck" :cards="topFive" faceDown/> 
     </div>
+    <hr>
+    <ActionBar id="actionBar"/>
   </section>
 </template>
 
 <script>
 import Card from '@/components/Card'
 import Deck from '@/components/Deck'
-//import Score from '@/components/Score'
-//import ActionBar from '@/components/ActionBar'
+import Score from '@/components/Score'
+import ActionBar from '@/components/ActionBar'
 
 Array.prototype.shuffle = function(){
   return this.sort(() => Math.random()-0.5 )
@@ -22,7 +23,7 @@ Array.prototype.shuffle = function(){
 
 export default {
   name: 'App',
-  components: {Card, Deck},
+  components: {Card, Deck, Score, ActionBar},
   data(){ return {
     deck: []
   }},
@@ -47,10 +48,22 @@ export default {
 <style lang="scss">
 body,html,#app{ height: 100%; margin: 0; padding: 0;}
 
-#app {
-  background-color: green;
+section {
   display: flex;
+  flex-direction: column; 
+  background-color: green;
+}
+
+#app {
+  display: flex;
+  flex-direction: row; 
   justify-content: center;
   align-items: center;
+}
+#actionBar {
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+  margin-left: 40%;
 }
 </style>

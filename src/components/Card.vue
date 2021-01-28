@@ -45,8 +45,8 @@ export default {
 
 <style lang="scss" scoped>
 .card{
-  width: 18rem;
-  height: 26rem;
+  width: 14rem;
+  height: 20rem;
   background-color: #EEE;
   border-radius: 12px;
   display: flex;
@@ -55,7 +55,6 @@ export default {
   justify-content: space-between;
   border: 10px solid white;
   padding: 1rem;
-  box-sizing: border-box;
   box-shadow: 0px -1px 1px 1px rgba(0,0,0,0.27);
 
   p{
