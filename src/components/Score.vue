@@ -1,43 +1,27 @@
 <template>
     <div>
-        <span>
-            <label>Attempts left: </label>
-            <label>{{attempts}}</label>
-        </span>
-        <span>
-            <label>Points: </label>
-            <label>{{points}}</label>
-        </span>
-        <span>
-            <label>Cards left: </label>
-            <label>{{heap}}</label>
-        </span>
+        <label>Attempts: {{scoreProps.attempts}}</label><br>
+        <label>Points: {{scoreProps.points}}</label><br>
+        <label>Cards left: {{scoreProps.heap}}</label>
     </div>
 </template>
 
 <script>
     export default {
         name: 'Score',
-        data() {
-            return {
-                attempts: 0,
-                points: 0,
-                heap: 0,
-            }
-        },
+        props: ['scoreProps'],
     }
+    
 </script>
 
 <style lang="scss" scoped>
-hr {
-    visibility: hidden;
-}
+
 label {
     color: white;
     font-weight: bold;
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
 }
-div {
-    display: flex;
-    flex-direction: column;
-}
+
 </style>

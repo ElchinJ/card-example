@@ -1,14 +1,12 @@
 <template>
   <section> 
-    <Score id="score"/>
+    <Score id="score" :scoreProps="scores"/>
     <div id="app">
-      <Card id="card" :card="{value, suite}"/>
-      <Deck id="deck" :cards="topFive" faceDown/> 
+      <Card id="card" :card="headCard"/>
+      <Deck id="deck" :cards="topFive.reverse()" :faceDown="faceDown"/> 
     </div>
     <hr>
     <ActionBar id="actionBar" @guessCard='guessCardValue($event)' />
-    <!-- <ActionBar id="actionBar" v-else-if @guessSame='guessSame'/>
-    <ActionBar id="actionBar" v-else @guessLower='guessLower'/> -->
   </section>
 </template>
 
@@ -18,20 +16,36 @@ import Deck from '@/components/Deck'
 import Score from '@/components/Score'
 import ActionBar from '@/components/ActionBar'
 
+Array.prototype.shuffle = function(){
+  return this.sort(() => Math.random()-0.5 )
+}
+
 export default {
   name: 'App',
   components: {Card, Deck, Score, ActionBar},
 
   data(){ return {
     deck: [],
-    value: 7,
-    suite: 'Hearts',
+    suites: ["Hearts", "Spades", "Diamonds", "Clubs"],
+    scores: {
+      attempts: 0,
+      points: 0,
+      heap: 51
+    },
+    faceDown: Boolean,
   }},
+
   computed: {
     topFive(){
       return this.deck.filter((_,i) => i < 5)
+    },
+    headCard: function() {
+      let value = Math.floor(Math.random() * Math.floor(14))
+      let suite = this.suites[Math.floor(Math.random() * this.suites.length)]; 
+      return {value, suite}
     }
   },
+
   created() {
     const suites = ["Hearts", "Spades", "Diamonds", "Clubs"]
     for(let suite of suites){
@@ -42,41 +56,33 @@ export default {
     }
     this.deck = this.deck.shuffle()
   },
-  // mounted() {
-  //   this.Game = new Game()
-  // },
   methods: {
     guessCardValue(guess) {
-      const nextCard = this.deck[0]
+      this.scores.attempts++
+      const nextCard = this.topFive[0]
+      this.faceDown = false
+
       if (guess == 'lower') {
-        if(nextCard.value < this.value){
+        if(nextCard.value < this.headCard.value){
+        this.scores.points++
         alert('Yes! Its lower');
       }else alert('Sorry! Wrong')
       }
       else if (guess == 'same') {
-        if (nextCard.value == this.value) {
+        if (nextCard.value == this.headCard.value) {
+          this.scores.points++
         alert('Yes! Its equal');
       }else alert('Sorry! Wrong')
       }
       else if (guess == 'higher') {
-        if (nextCard.value > this.value) {
+        if (nextCard.value > this.headCard.value) {
+          this.scores.points++
         alert('Yes! Its higher');
       }else alert('Sorry! Wrong')
       }
+      this.scores.heap--
     },
-    // guessSame(){
-    //   let nextCard = this.deck[0]
-    //   if(nextCard.value == this.value){
-    //     alert('Du gissade rätt!!!');
-    //   }
-    // },
-    // guessHigher() {
-    //   let nextCard = this.deck[0]
-    //   if(nextCard.value > this.value){
-    //     alert('Du gissade rätt!!!');
-    //   }
-    // }
-}
+},
 }
 </script>
 

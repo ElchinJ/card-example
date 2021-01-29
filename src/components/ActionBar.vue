@@ -17,24 +17,13 @@ export default {
           this.$emit('guessCard', 'same')
         } else {
           this.$emit('guessCard', 'higher')
-        }
-      }
+        }},
     },
-  //   methods: {
-  //     guessLower(){
-  //       this.$emit('guessLower')
-  //   },
-  //   guessSame() {
-  //     this.$emit('guessSame')
-  //   },
-  //   guessHigher() {
-  //     this.$emit('guessHigher')
-  //   }
-  // }
 }
 </script>
 
 <style>
+
 #buttons {
   justify-content: center;
   align-items: center;
